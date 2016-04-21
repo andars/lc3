@@ -1,3 +1,5 @@
+// modified from source found at https://danstrother.com/2010/09/11/inferring-rams-in-fpgas/
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
