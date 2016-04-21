@@ -69,15 +69,11 @@ assign in_frame = hc < 640 && vc < 480;
 assign char_tick = in_frame & ((pix_x & 10'h7) == 10'h7) & clk25;
 
 
-//assign addr = pix_x[9:3] | (pix_y[8:4] << 7);
-
 assign next_char_x = (in_frame) ? char_x+1 : 0;
 
 // while blanking, need to fetch next row's font
 assign font_row = pix_y[3:0] + ((in_frame) ? 0 : 1);
 
-//assign addr = next_char_x | (char_y << 7); // address of next character
-//assign addr = next_char_x | 12'd256;
 assign addr = next_char_x | (char_y << 7);
 
 assign char = color; // character data from video memory
@@ -85,14 +81,6 @@ assign char = color; // character data from video memory
 assign font_addr = {{char, font_row}}; 
 
 assign pixel = curr_col_font[~pix_x[2:0]]; // mux on x location
-
-
-/*
-//character available 1 clock before displayed
-always @(posedge clk50_in) begin
-	char <= color; // need to rename color
-end
-*/
 
 // font available at time of display
 // fetch the corresponding line of the character font
@@ -113,23 +101,6 @@ always @(posedge clk50_in) begin
 end
 
 always @(posedge clk50_in) begin
-	//if (~in_frame) char_x <= 0;
-		
-	if (char_tick) begin
-		//char_x <= char_x + 1;
-		// register new font line when moving to new char column
-		//font_delay <= font_line;
-		
-	/*
-		if (char_x >= 80) begin
-			char_x <= 0;
-			char_y <= char_y + 1; //WRONG
-		end
-		
-		if (char_y >= 30) char_y <= 0;
-	*/
-	end
-	
 	if (((pix_x & 10'h7) == 10'h7) & clk25)
 		curr_col_font <= font_line;
 end
