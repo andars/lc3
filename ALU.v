@@ -42,9 +42,6 @@ assign imm = { {12{IR[4]}}, IR[4:0] };
 assign input_b = IR[5] ? imm : Rb;
 assign input_a = Ra;
 
-
-// "don't forget to include an ALUMux"?
-
 assign aluOut = (aluControl == 0) ? input_a :
 					 (aluControl == 1) ? input_a + input_b :
 					 (aluControl == 2) ? input_a & input_b :
