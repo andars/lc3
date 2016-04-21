@@ -1,0 +1,10 @@
+ADDRESS_SPACE PROM RAMB16 [0x00000000:0x00001FFF]
+
+    BUS_BLOCK
+        mc/sys_ram/Mram_mem4 [3:0];
+		  mc/sys_ram/Mram_mem3 [7:4];
+		  mc/sys_ram/Mram_mem2 [11:8];
+		  mc/sys_ram/Mram_mem1 [15:12];
+    END_BUS_BLOCK;
+
+END_ADDRESS_SPACE;
